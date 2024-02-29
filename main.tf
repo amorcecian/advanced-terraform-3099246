@@ -44,6 +44,7 @@ resource "google_compute_instance" "nginx_instance" {
     environment = var.environment_map[var.target_environment]
   }
   tags = var.compute-source-tags
+ 
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-11"
@@ -156,7 +157,7 @@ resource "google_sql_database_instance" "cloudsql" {
 
 ## CLOUD SQL USER
 resource "google_sql_user" "users" {
-  name     = "db-user"
+  name     = var.dbusername
   instance = google_sql_database_instance.cloudsql.name
-  password = "notsecurepassword"
+  password = var.dbpassword
 }
