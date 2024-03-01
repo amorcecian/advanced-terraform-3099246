@@ -94,8 +94,7 @@ resource "google_compute_instance" "web-instances" {
 ## WEBSERVERS-MAP
 resource "google_compute_instance" "web-map-instances" {
   for_each = var.environment_instance_settings
-  # name = "${lower(each.key)}-web"
-  name = "${each.value.labels.environment}-web"
+  name = "${lower(each.key)}-web"
   machine_type = each.value.machine_type
   labels = each.value.labels
 
